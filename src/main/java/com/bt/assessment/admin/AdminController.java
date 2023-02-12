@@ -31,7 +31,10 @@ public class AdminController {
 
 		Future<Optional<User>> futureUser = jsonPlaceholderService.getUser(userId);
 		Future<List<Post>> futurePosts = jsonPlaceholderService.getPosts(userId);
-
+		/**
+		 * checks the user returned ,
+		 * if it is not present UserNotFoundException is thrown
+		 */
 		Optional<User> optionalUser = futureUser.get();
 		if (!optionalUser.isPresent()) {
 			throw new UserNotFoundException(String.format("User with ID %s not found", userId));
